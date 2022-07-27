@@ -6,9 +6,12 @@ import Link from "next/link";
 
 export default function Home() {
   const [validInput, setValidInput] = useState(false);
-
-  // checking if the number entered is valid or not
-  const checkValidity = () => {
+  const [phoneNumberInput, setPhoneNumberInput] = useState("");
+  // limiting the input to 10 digits and checking if the number entered is valid or not
+  const handleInput = (e) => {
+    if (e.target.value >= 0 && e.target.value <= 9999999999) {
+      setPhoneNumberInput(e.target.value);
+    }
     const valid = phoneNumber.checkValidity();
     if (checkbox.checkValidity() && valid) {
       setValidInput(true);
@@ -80,10 +83,11 @@ export default function Home() {
                 name="PhoneNumber"
                 required
                 maxLength={10}
+                value={phoneNumberInput}
                 pattern="[0-9]{10}"
                 id="phoneNumber"
                 className="h-10 w-[300px] pl-[155px] md:pl-[138px] pt-[2.5px] bg-[#f4f4f5]  box-shadow_input border-solid border border-[#cacaca] rounded-[10px] focus:outline-none text-base text-[#1a1a1a] font-medium md:text-[14px] md:leading-[21px] "
-                onChange={checkValidity}
+                onChange={handleInput}
               />
             </div>
             <div className="w-[96px] md:w-[91px] flex items-center  absolute top-0 p-1 h-10 box-shadow_input rounded-[10px] bg-[#f4f4f5] ">
@@ -110,7 +114,7 @@ export default function Home() {
                   type="checkbox"
                   name="TermsAndConditions"
                   id="checkbox"
-                  onClick={checkValidity}
+                  onClick={handleInput}
                   required
                   className="mr-[6px] md:mr-3 h-[20px] w-[20px] box-shadow_input bg-[#f4f4f5] appearance-none checked:bg-[#6776ff] checked:before:content-['✔'] text-white flex justify-center items-center "
                 />
