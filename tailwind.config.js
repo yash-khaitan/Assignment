@@ -6,7 +6,7 @@ module.exports = {
   theme: {
     extend: {
       backgroundImage: {
-        rectangle: "url('./Rectangle.png') ",
+        "rectangle-bg": "url('public/Rectangle.png') ",
       },
     },
   },
